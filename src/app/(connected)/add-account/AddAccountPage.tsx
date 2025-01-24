@@ -5,8 +5,10 @@ import { addAccount } from './actions'
 
 export default function AddAccountPage() {
   return (
-    <div className="flex h-screen">
-      <Form action={addAccount} className="flex flex-col w-[300px] m-auto gap-6">
+    <div>
+      <h1 className="font-bold text-xl">Ajouter un compte client</h1>
+
+      <Form action={addAccount} className="mt-8 flex flex-col w-[300px] gap-6">
         <div className="flex flex-col gap-2">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" className="border-black border-2"/>

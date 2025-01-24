@@ -22,7 +22,7 @@ async function makeRequest(method: string, route: string, withAuthentication: bo
 
   if (withAuthentication) {
     const cookieStore = await cookies()
-    const jwt = cookieStore.get('jwt')
+    const jwt = cookieStore.get('jwt_admin')
 
     headers.Authorization = 'Bearer ' + jwt?.value
   }

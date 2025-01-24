@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { post } from '@/lib/httpMethods';
  
 export async function addAccount(formData: FormData) {
-  const data = await post('add-account', {
+  await post('add-account', {
     name: formData.get('name'),
     slug: formData.get('slug'),
     host: formData.get('host'),

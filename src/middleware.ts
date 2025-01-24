@@ -12,13 +12,13 @@ export default async function middleware(request: NextRequest) {
  
   const cookieStore = await cookies()
 
-  if (request.nextUrl.pathname === "/logout") {
-    cookieStore.delete('jwt')
+  if (path === "/logout") {
+    cookieStore.delete('jwt_admin')
 
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  const jwt = cookieStore.get('jwt')
+  const jwt = cookieStore.get('jwt_admin')
 
   if (!jwt) {
     return NextResponse.redirect(new URL('/login', request.nextUrl))
