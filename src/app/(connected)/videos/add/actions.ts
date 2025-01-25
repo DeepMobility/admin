@@ -9,7 +9,7 @@ export async function addVideo(formData: FormData) {
     url: formData.get('url'),
     description: formData.get('description'),
     duration: formData.get('duration'),
-    courseId: formData.get('courseId'),
+    course: formData.get('course'),
     coursePosition: formData.get('coursePosition'),
   })
 

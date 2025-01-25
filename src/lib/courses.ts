@@ -1,4 +1,4 @@
 export default [
-  { id: 1, name: 'Parcours douleur' },
-  { id: 2, name: 'Parcours mobilité' },
+  { value: 'pain', label: 'Parcours douleur' },
+  { value: 'mobility', label: 'Parcours mobilité' },
 ]

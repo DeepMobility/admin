@@ -27,7 +27,7 @@ export default function VideosPage({ videos }: { videos: Array<any> }) {
           <div key={video.id} className="flex gap-4">
             <div className="basis-1/6">{video.name}</div>
             <div className="basis-1/2">{video.url}</div>
-            <div className="basis-1/6">{courses.find(course => video.courseId === course.id)?.name}</div>
+            <div className="basis-1/6">{courses.find(course => video.course === course.value)?.label}</div>
             <div className="basis-1/6">{video.coursePosition}</div>
           </div>
         ))}

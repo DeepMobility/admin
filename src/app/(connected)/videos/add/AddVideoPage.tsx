@@ -31,11 +31,11 @@ export default function AddVideoPage() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="courseId">Parcours</label>
-          <select name="courseId">
+          <label htmlFor="course">Parcours</label>
+          <select name="course">
             <option value=""></option>
             {courses.map((course) => (
-              <option key={course.id} value={course.id}>{course.name}</option>
+              <option key={course.value} value={course.value}>{course.label}</option>
             ))}
           </select>
         </div>
