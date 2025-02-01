@@ -17,7 +17,12 @@ export default function AddVideoPage() {
 
         <div className="flex flex-col gap-2">
           <label htmlFor="url">URL</label>
-          <input type="text" name="url" className="border-black border-2"/>
+          <input type="text" name="url" className="border-black border-2" required/>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="thumbnailUrl">URL de la vignette</label>
+          <input type="text" name="thumbnailUrl" className="border-black border-2"/>
         </div>
 
         <div className="flex flex-col gap-2">

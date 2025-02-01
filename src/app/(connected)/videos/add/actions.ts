@@ -7,6 +7,7 @@ export async function addVideo(formData: FormData) {
   await post('add-video', {
     name: formData.get('name'),
     url: formData.get('url'),
+    thumbnailUrl: formData.get('thumbnailUrl'),
     description: formData.get('description'),
     duration: formData.get('duration'),
     course: formData.get('course'),
