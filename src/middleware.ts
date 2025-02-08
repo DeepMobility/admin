@@ -14,7 +14,7 @@ export default async function middleware(request: NextRequest) {
 
   const jwt = cookieStore.get('jwt_admin')
 
-  if (!jwt) {
+  if (!jwt?.value) {
     if (path.startsWith('/login')) {
       return NextResponse.next()
     }
