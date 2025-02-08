@@ -1,15 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
- 
-const publicRoutes = ['/login']
- 
+
 export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
-  if (publicRoutes.includes(path)) {
-    return NextResponse.next()
-  }
- 
   const cookieStore = await cookies()
 
   if (path === "/logout") {
@@ -21,7 +15,15 @@ export default async function middleware(request: NextRequest) {
   const jwt = cookieStore.get('jwt_admin')
 
   if (!jwt) {
+    if (path.startsWith('/login')) {
+      return NextResponse.next()
+    }
+
     return NextResponse.redirect(new URL('/login', request.nextUrl))
+  }
+
+  if (path.startsWith('/login')) {
+    return NextResponse.redirect(new URL('/', request.nextUrl))
   }
 
   return NextResponse.next()
