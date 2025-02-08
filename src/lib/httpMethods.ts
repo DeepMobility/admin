@@ -11,7 +11,7 @@ function unauthenticatedPost(route: string, payload: any) {
   return makeRequest('POST', route, false, payload)
 }
 
-async function post(route: string, payload: any, withAuthentication = true) {
+async function post(route: string, payload: any) {
   return makeRequest('POST', route, true, payload)
 }
 

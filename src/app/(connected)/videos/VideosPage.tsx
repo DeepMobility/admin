@@ -2,11 +2,8 @@
 
 import courses from '@/lib/courses'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 export default function VideosPage({ videos }: { videos: Array<any> }) {
-  const router = useRouter()
-
   return (
     <div>
       <h1 className="font-bold text-xl">Videos</h1>

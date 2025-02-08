@@ -1,11 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 export default function HomePage({ accounts }: { accounts: Array<any> }) {
-  const router = useRouter()
-
   return (
     <div>
       <h1 className="font-bold text-xl">Dashboard</h1>
