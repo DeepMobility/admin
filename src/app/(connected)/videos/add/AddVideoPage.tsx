@@ -4,7 +4,7 @@ import Form from 'next/form'
 import { addVideo } from './actions'
 import courses from '@/lib/courses'
 import painfulBodyParts from '@/lib/painfulBodyParts'
-import injuryTypes from '@/lib/injuryTypes'
+import exerciseTypes from '@/lib/exerciseTypes'
 
 export default function AddVideoPage() {
   return (
@@ -66,10 +66,10 @@ export default function AddVideoPage() {
         <div className="flex flex-col gap-2">
           <div>Type de blessure</div>
 
-          {injuryTypes.map((injuryType) => (
-            <div key={injuryType.value} className="flex gap-2">
-              <input type="checkbox" name="injuryTypes" value={injuryType.value} id={injuryType.value}/>
-              <label htmlFor={injuryType.value}>{injuryType.label}</label>
+          {exerciseTypes.map((exerciseType) => (
+            <div key={exerciseType.value} className="flex gap-2">
+              <input type="checkbox" name="exerciseTypes" value={exerciseType.value} id={exerciseType.value}/>
+              <label htmlFor={exerciseType.value}>{exerciseType.label}</label>
             </div>
           ))}
         </div>

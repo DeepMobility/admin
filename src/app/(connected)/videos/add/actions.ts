@@ -13,7 +13,7 @@ export async function addVideo(formData: FormData) {
     course: formData.get('course'),
     coursePosition: formData.get('coursePosition'),
     bodyParts: formData.getAll('bodyParts'),
-    injuryTypes: formData.getAll('injuryTypes'),
+    exerciseTypes: formData.getAll('exerciseTypes'),
   })
 
   redirect('/videos')
