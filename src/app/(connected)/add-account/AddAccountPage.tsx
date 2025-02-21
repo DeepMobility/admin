@@ -15,13 +15,18 @@ export default function AddAccountPage() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="name">Slug</label>
+          <label htmlFor="slug">Slug</label>
           <input type="text" name="slug" className="border-black border-2"/>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="name">Host</label>
+          <label htmlFor="host">Host</label>
           <input type="text" name="host" className="border-black border-2"/>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="logoUrl">Logo Url</label>
+          <input type="text" name="logoUrl" className="border-black border-2"/>
         </div>
         
         <button type="submit">Ajouter</button>

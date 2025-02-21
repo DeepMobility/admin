@@ -8,6 +8,7 @@ export async function addAccount(formData: FormData) {
     name: formData.get('name'),
     slug: formData.get('slug'),
     host: formData.get('host'),
+    logoUrl: formData.get('logoUrl'),
   })
 
   redirect('/')
