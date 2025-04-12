@@ -33,7 +33,12 @@ export default function HomePage({ accounts }: { accounts: Array<any> }) {
 
         {displayedAccounts.map((account) => (
           <div key={account.id} className="flex gap-4">
-            <div className="w-36">{account.name}</div>
+            <Link
+              className="w-36 cursor-pointer hover:underline"
+              href={`/${account.id}`}
+            >
+              {account.name}
+            </Link>
             <div className="w-36">{account.slug}</div>
             <div className="w-56">{account.host}</div>
             <button type="button" onClick={() => deleteAccount(account.id)}
