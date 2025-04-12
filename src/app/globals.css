@@ -5,17 +5,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: only light;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  @apply border-gray-300 border p-2 rounded-xl;
+}
+
+select {
+  @apply bg-white border-gray-300 border py-3 px-2 rounded-xl;
+}
+
+button {
+  @apply hover:opacity-70;
 }

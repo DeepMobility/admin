@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Viewport, Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,9 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DeepMobility admin",
+  title: "Deepmobility Admin",
+  description: "Admin de Deepmobility",
   robots: { index: false }
 };
+
+export const viewport: Viewport = {
+  themeColor: 'only light',
+}
 
 export default function RootLayout({
   children,
