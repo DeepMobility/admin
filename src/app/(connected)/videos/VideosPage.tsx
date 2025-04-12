@@ -40,7 +40,12 @@ export default function VideosPage({ videos }: { videos: Array<any> }) {
 
               {displayedVideos.filter(video => video.course === course.value).map((video) => (
                 <div key={video.id} className="flex gap-8">
-                  <div className='w-[200px]'>{video.name}</div>
+                  <Link
+                    className='w-[200px] cursor-pointer hover:underline'
+                    href={`/videos/${video.id}`}
+                  >
+                    {video.name}
+                  </Link>
                   <div className='flex-1'>{video.url}</div>
                   <div className='w-[200px]'>{courses.find(course => video.course === course.value)?.label}</div>
                   <div className='w-[100px]'>{video.coursePosition}</div>
