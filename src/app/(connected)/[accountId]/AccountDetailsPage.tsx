@@ -35,10 +35,10 @@ export default function({ account }: { account: any }) {
             <div key={rating.question} className="flex flex-col gap-2">
               <div>Moyennes :</div>
               <div>
-                {sessionQuestions.find(q => q.value === rating.question)?.beforeLabel} : {rating.averageBeforeRating.toFixed(1)}
+                {sessionQuestions.find(q => q.value === rating.question)?.beforeLabel} : {rating.averageBeforeRating?.toFixed(1)}
               </div>
               <div>
-                {sessionQuestions.find(q => q.value === rating.question)?.afterLabel} : {rating.averageAfterRating.toFixed(1)}
+                {sessionQuestions.find(q => q.value === rating.question)?.afterLabel} : {rating.averageAfterRating?.toFixed(1)}
               </div>
             </div>
           ))}

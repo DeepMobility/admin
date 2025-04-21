@@ -2,7 +2,7 @@ const sessionQuestions = [
   {
     value: 'energy',
     beforeLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie avant cette séance ?",
-    afterLabel: "Sur une échelle de 1 à 5, ressentez-vous une augmentation de votre énergie après cette séance ?",
+    afterLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie après cette séance ?",
   },
   {
     value: 'stress',
