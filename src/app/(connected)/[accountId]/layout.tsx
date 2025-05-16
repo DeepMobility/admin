@@ -23,6 +23,18 @@ export default async function AccountLayout({
           Détails du compte
         </Link>
         <Link 
+          href={`/${account.id}/users`} 
+          className="text-blue-500 hover:underline"
+        >
+          Utilisateurs
+        </Link>
+        <Link 
+          href={`/${account.id}/teams`} 
+          className="text-blue-500 hover:underline"
+        >
+          Équipes
+        </Link>
+        <Link 
           href={`/${account.id}/challenges`} 
           className="text-blue-500 hover:underline"
         >
