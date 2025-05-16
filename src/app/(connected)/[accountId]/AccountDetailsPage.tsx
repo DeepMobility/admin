@@ -4,7 +4,6 @@ import sessionQuestions from "@/lib/sessionQuestions";
 export default function({ account }: { account: any }) {
   return (
     <div>
-      <h1 className="font-bold text-xl">{account.name}</h1>
 
       <div className="flex flex-col gap-6 mt-8">
         <div>Nombre d'inscrits : {account.usersCount}</div>
