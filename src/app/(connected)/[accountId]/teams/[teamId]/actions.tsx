@@ -5,10 +5,12 @@ export async function getTeamDetails(teamId: string) {
 }
 
 export async function editTeam(teamId: string, formData: FormData) {
+  const members = formData.getAll('members[]')
   await post(`edit-team`, {
     teamId,
     name: formData.get('name'),
     description: formData.get('description'),
+    members
   })
 }
 

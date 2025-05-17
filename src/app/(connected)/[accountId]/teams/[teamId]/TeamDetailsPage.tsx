@@ -31,7 +31,7 @@ export default function TeamDetailsPage({
           initialData={team}
           onSubmit={async (formData: FormData) => {
             await editTeam(teamId, formData)
-            router.push(`/${accountId}/teams`)
+            router.refresh()
           }}
           onCancel={() => router.push(`/${accountId}/teams`)}
         />
