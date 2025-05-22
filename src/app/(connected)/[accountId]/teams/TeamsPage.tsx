@@ -44,7 +44,7 @@ export default function TeamsPage({ accountId, teams: initialTeams }: { accountI
             <div className="flex items-center space-x-4">
               <Link
                 href={`/${accountId}/teams/${team.id}`}
-                className="text-indigo-600 hover:text-indigo-900"
+                className="text-blue-600 hover:text-blue-900"
               >
                 Modifier
               </Link>

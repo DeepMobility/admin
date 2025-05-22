@@ -14,7 +14,10 @@ interface Challenge {
   status: 'pending' | 'active' | 'completed' | 'cancelled',
   type: 'individual' | 'team',
   startDate: Date
-  endDate: Date
+  endDate: Date,
+  progress: {
+    totalPoints: number;
+  }
 }
 
 export default function ChallengesPage({ accountId, challenges: initialChallenges }: { accountId: string, challenges: Challenge[] }) {
@@ -45,9 +48,12 @@ export default function ChallengesPage({ accountId, challenges: initialChallenge
             <div className="flex-1">
               <h3 className="text-lg font-medium text-gray-900">{challenge.title}</h3>
               <p className="mt-1 text-sm text-gray-500">{challenge.description}</p>
-              <div className="mt-2 flex items-center space-x-4">
+              <div className="mt-2 flex items-center space-x-2">
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  {challenge.goalAmount} points
+                  <strong className="mr-1">{challenge.progress.totalPoints}</strong>points collectés
+                </span>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  Objectif: <strong className="mx-1">{challenge.goalAmount}</strong> points
                 </span>
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                   challenge.status === 'active' ? 'bg-green-100 text-green-800' :
@@ -57,11 +63,26 @@ export default function ChallengesPage({ accountId, challenges: initialChallenge
                   {challenge.status}
                 </span>
               </div>
+
+              <div className="mt-3">
+                {(() => {
+                  const percent = Math.min(100, Math.round((challenge.progress.totalPoints / challenge.goalAmount) * 100));
+                  return (
+                    <div className="md:w-1/2 w-full bg-gray-200 rounded-full h-3">
+                      <div
+                        className="bg-blue-500 h-3 rounded-full transition-all duration-300"
+                        style={{ width: `${percent}%` }}
+                      ></div>
+                    </div>
+                  );
+                })()}
+                <div className="text-xs text-blue-500 font-semibold mt-1">{Math.min(100, Math.round((challenge.progress.totalPoints / challenge.goalAmount) * 100))}%</div>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <Link
                 href={`/${accountId}/challenges/${challenge.id}`}
-                className="text-indigo-600 hover:text-indigo-900"
+                className="text-blue-600 hover:text-blue-900"
               >
                 Modifier
               </Link>

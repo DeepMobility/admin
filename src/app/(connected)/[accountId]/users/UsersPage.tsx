@@ -51,7 +51,7 @@ export default function UsersPage({ accountId, users: initialUsers }: { accountI
             <div className="flex items-center space-x-4">
               <Link
                 href={`/${accountId}/users/${user.id}`}
-                className="text-indigo-600 hover:text-indigo-900"
+                className="text-blue-600 hover:text-blue-900"
               >
                 Modifier
               </Link>
