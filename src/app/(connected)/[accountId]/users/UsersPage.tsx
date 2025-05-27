@@ -42,11 +42,6 @@ export default function UsersPage({ accountId, users: initialUsers }: { accountI
                 {user.firstName} {user.lastName}
               </h3>
               <p className="mt-1 text-sm text-gray-500">{user.email}</p>
-              <div className="mt-2">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  {user.role}
-                </span>
-              </div>
             </div>
             <div className="flex items-center space-x-4">
               <Link
