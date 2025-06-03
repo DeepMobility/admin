@@ -28,7 +28,7 @@ export default function ConnectedLayout({
           <Link href="/logout" prefetch={false}><AiOutlineLogout size="25px"/></Link>
         </nav>
 
-        <div className="mt-12 h-[calc(100vh-50px)] max-w-[1366px] m-auto">
+        <div className="mt-12 min-h-[calc(100vh-50px)] max-w-[1366px] m-auto">
           {children}
         </div>
     </div>
