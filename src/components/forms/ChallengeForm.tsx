@@ -118,7 +118,7 @@ export default function ChallengeForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="conversionRate" className="font-medium">Taux de conversion (en %)</label>
+            <label htmlFor="conversionRate" className="font-medium">Taux de conversion (1 point = x€)</label>
             <input 
               type="number" 
               name="conversionRate" 
