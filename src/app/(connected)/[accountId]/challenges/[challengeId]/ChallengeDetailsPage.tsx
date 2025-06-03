@@ -77,10 +77,10 @@ export default function ChallengeDetailsPage({
             <div>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  <strong className="mr-1">{challenge.progress.totalPoints}</strong>points collectés, soit <strong className="mx-1">{challenge.progress.totalPoints * challenge.conversionRate}</strong>€
+                  <strong className="mr-1">{challenge.progress.totalPoints}</strong>points collectés, soit <strong className="mx-1">{(challenge.progress.totalPoints * challenge.conversionRate).toFixed(2)}</strong>€
                 </span>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                  Objectif: <strong className="mx-1">{challenge.goalAmount}</strong> €
+                  Objectif: <strong className="mx-1">{challenge.goalAmount.toFixed(2)}</strong> €
                 </span>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   {challenge.progress.participantsCount} participants
