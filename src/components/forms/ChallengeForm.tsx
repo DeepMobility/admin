@@ -31,12 +31,34 @@ export default function ChallengeForm({
   onCancel
 }: ChallengeFormProps) {
   const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [type, setType] = useState<'individual' | 'team'>(initialData.type || 'individual')
-  
   const isEditMode = !!challengeId
 
-  const handleSubmit = async (formData: FormData) => {
+  const [title, setTitle] = useState(initialData.title || '')
+  const [description, setDescription] = useState(initialData.description || '')
+  const [associationName, setAssociationName] = useState(initialData.associationName || '')
+  const [associationLogoUrl, setAssociationLogoUrl] = useState(initialData.associationLogoUrl || '')
+  const [goalAmount, setGoalAmount] = useState(initialData.goalAmount?.toString() || '')
+  const [conversionRate, setConversionRate] = useState(initialData.conversionRate?.toString() || '')
+  const [startDate, setStartDate] = useState(initialData.startDate ? new Date(initialData.startDate).toISOString().split('T')[0] : '')
+  const [endDate, setEndDate] = useState(initialData.endDate ? new Date(initialData.endDate).toISOString().split('T')[0] : '')
+  const [type, setType] = useState<'individual' | 'team'>(initialData.type || 'individual')
+  const [status, setStatus] = useState<string>(initialData.status || 'pending')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async () => {
+    const formData = new FormData()
+    formData.set('title', title)
+    formData.set('description', description)
+    formData.set('associationName', associationName)
+    formData.set('associationLogoUrl', associationLogoUrl)
+    formData.set('goalAmount', goalAmount)
+    formData.set('conversionRate', conversionRate)
+    formData.set('startDate', startDate)
+    formData.set('endDate', endDate)
+    formData.set('type', type)
+    formData.set('status', status)
+    if (accountId) formData.set('accountId', accountId)
+
     try {
       setIsSubmitting(true)
       await onSubmit(formData)
@@ -52,31 +74,30 @@ export default function ChallengeForm({
       <h2 className="text-lg font-medium text-gray-900 mb-4">
         {isEditMode ? 'Modifier le défi' : 'Créer un défi'}
       </h2>
-      
-      <Form action={handleSubmit} className="space-y-4">
+      <form onSubmit={e => { e.preventDefault(); handleSubmit(); }} className="space-y-4">
         <div className="flex flex-col gap-2">
           <label htmlFor="title" className="font-medium">Titre</label>
           <input 
             type="text" 
             name="title" 
             id="title"
-            defaultValue={initialData.title || ''}
+            value={title}
+            onChange={e => setTitle(e.target.value)}
             className="border border-gray-300 rounded-md px-3 py-2" 
             required 
           />
         </div>
-
         <div className="flex flex-col gap-2">
           <label htmlFor="description" className="font-medium">Description</label>
           <textarea 
             name="description" 
             id="description"
-            defaultValue={initialData.description || ''}
+            value={description}
+            onChange={e => setDescription(e.target.value)}
             className="border border-gray-300 rounded-md px-3 py-2 min-h-[100px]" 
             required 
           />
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="associationName" className="font-medium">Nom de l'association</label>
@@ -84,24 +105,24 @@ export default function ChallengeForm({
               type="text" 
               name="associationName" 
               id="associationName"
-              defaultValue={initialData.associationName || ''}
+              value={associationName}
+              onChange={e => setAssociationName(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2" 
               required 
             />
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="associationLogoUrl" className="font-medium">URL du logo de l'association</label>
             <input 
               type="text" 
               name="associationLogoUrl" 
               id="associationLogoUrl"
+              value={associationLogoUrl}
+              onChange={e => setAssociationLogoUrl(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2"
-              defaultValue={initialData.associationLogoUrl || ''}
             />
           </div>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="goalAmount" className="font-medium">Montant de l'objectif (en €)</label>
@@ -109,21 +130,22 @@ export default function ChallengeForm({
               type="number" 
               name="goalAmount" 
               id="goalAmount"
-              defaultValue={initialData.goalAmount || ''}
+              value={goalAmount}
+              onChange={e => setGoalAmount(e.target.value)}
               step="0.01"
               min="0"
               className="border border-gray-300 rounded-md px-3 py-2" 
               required 
             />
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="conversionRate" className="font-medium">Taux de conversion (1 point = x€)</label>
             <input 
               type="number" 
               name="conversionRate" 
               id="conversionRate"
-              defaultValue={initialData.conversionRate || ''}
+              value={conversionRate}
+              onChange={e => setConversionRate(e.target.value)}
               step="0.01"
               min="0"
               className="border border-gray-300 rounded-md px-3 py-2" 
@@ -131,7 +153,6 @@ export default function ChallengeForm({
             />
           </div>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="startDate" className="font-medium">Date de début</label>
@@ -139,31 +160,31 @@ export default function ChallengeForm({
               type="date" 
               name="startDate" 
               id="startDate"
-              defaultValue={initialData.startDate ? new Date(initialData.startDate).toISOString().split('T')[0] : undefined}
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2" 
             />
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="endDate" className="font-medium">Date de fin</label>
             <input 
               type="date" 
               name="endDate" 
               id="endDate"
-              defaultValue={initialData.endDate ? new Date(initialData.endDate).toISOString().split('T')[0] : undefined}
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2" 
             />
           </div>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="type" className="font-medium">Type de défi</label>
             <select 
               name="type" 
               id="type"
-              defaultValue={initialData.type || 'individual'}
-              onChange={(e) => setType(e.target.value as 'individual' | 'team')}
+              value={type}
+              onChange={e => setType(e.target.value as 'individual' | 'team')}
               className="border border-gray-300 rounded-md px-3 py-2" 
               required
             >
@@ -171,13 +192,13 @@ export default function ChallengeForm({
               <option value="team">Equipe</option>
             </select>
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="status" className="font-medium">Statut</label>
             <select 
               name="status" 
               id="status"
-              defaultValue={initialData.status || 'pending'}
+              value={status}
+              onChange={e => setStatus(e.target.value)}
               className="border border-gray-300 rounded-md px-3 py-2" 
               required
             >
@@ -188,9 +209,7 @@ export default function ChallengeForm({
             </select>
           </div>
         </div>
-
         {accountId && <input type="hidden" name="accountId" value={accountId} />}
-        
         <div className="flex justify-end space-x-3 pt-4">
           <button
             type="button"
@@ -213,7 +232,7 @@ export default function ChallengeForm({
             ) : isEditMode ? 'Modifier le défi' : 'Créer le défi'}
           </button>
         </div>
-      </Form>
+      </form>
     </div>
   )
 }
