@@ -11,7 +11,8 @@ export async function editUser(userId: string, formData: FormData) {
     firstName: formData.get('firstName'),
     lastName: formData.get('lastName'),
     gender: formData.get('gender'),
-    birthYear: formData.get('birthYear')
+    birthYear: formData.get('birthYear'),
+    hasDashboardAccess: formData.get('hasDashboardAccess') === 'on'
   })
 }
 

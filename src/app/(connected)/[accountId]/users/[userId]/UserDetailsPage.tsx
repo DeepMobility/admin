@@ -10,6 +10,7 @@ interface User {
   firstName: string
   lastName: string
   role: string
+  hasDashboardAccess?: boolean
 }
 
 export default function UserDetailsPage({

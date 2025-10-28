@@ -10,6 +10,7 @@ export async function addUser(accountId: string, formData: FormData) {
     lastName: formData.get('lastName'),
     gender: formData.get('gender'),
     birthYear: formData.get('birthYear'),
-    password: formData.get('password')
+    password: formData.get('password'),
+    hasDashboardAccess: formData.get('hasDashboardAccess') === 'on'
   })
 }

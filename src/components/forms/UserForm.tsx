@@ -11,6 +11,7 @@ interface User {
   gender: string
   birthYear: number,
   password?: string
+  hasDashboardAccess?: boolean
 }
 
 interface UserFormProps {
@@ -29,6 +30,7 @@ export default function UserForm({
   onCancel
 }: UserFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [hasDashboardAccess, setHasDashboardAccess] = useState(initialData.hasDashboardAccess || false)
   
   const isEditMode = !!userId
 
@@ -123,6 +125,25 @@ export default function UserForm({
               required
               className="border border-gray-300 rounded-md px-3 py-2"
             />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-md border border-blue-200">
+          <input
+            type="checkbox"
+            id="hasDashboardAccess"
+            name="hasDashboardAccess"
+            checked={hasDashboardAccess}
+            onChange={(e) => setHasDashboardAccess(e.target.checked)}
+            className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <div className="flex-1">
+            <label htmlFor="hasDashboardAccess" className="font-medium text-gray-900 cursor-pointer">
+              Accès au dashboard
+            </label>
+            <p className="text-sm text-gray-600 mt-1">
+              Permet à cet utilisateur d'accéder au tableau de bord des statistiques de l'entreprise
+            </p>
           </div>
         </div>
 

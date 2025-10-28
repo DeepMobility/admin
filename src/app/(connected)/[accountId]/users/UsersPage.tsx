@@ -10,6 +10,7 @@ interface User {
   firstName: string
   lastName: string
   role: string
+  hasDashboardAccess?: boolean
 }
 
 export default function UsersPage({ accountId, users: initialUsers }: { accountId: string, users: User[] }) {
@@ -38,9 +39,16 @@ export default function UsersPage({ accountId, users: initialUsers }: { accountI
         {users.map((user) => (
           <div key={user.id} className="flex items-center justify-between p-4 bg-white shadow rounded-lg">
             <div className="flex-1">
-              <h3 className="text-lg font-medium text-gray-900">
-                {user.firstName} {user.lastName}
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg font-medium text-gray-900">
+                  {user.firstName} {user.lastName}
+                </h3>
+                {user.hasDashboardAccess && (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    Dashboard
+                  </span>
+                )}
+              </div>
               <p className="mt-1 text-sm text-gray-500">{user.email}</p>
             </div>
             <div className="flex items-center space-x-4">
