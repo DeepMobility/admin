@@ -40,6 +40,12 @@ export default async function AccountLayout({
         >
           Défis solidaires
         </Link>
+        <Link 
+          href={`/${account.id}/settings`} 
+          className="text-blue-500 hover:underline"
+        >
+          Paramètres
+        </Link>
       </nav>
 
       <main className="mt-6">
