@@ -2,33 +2,56 @@
 
 import { post } from '@/lib/httpMethods';
 
-export async function saveAccountSettings(
-  _state: {
-    success: boolean
-    errorMessage: string
-    successMessage: string
-  },
-  formData: FormData
-) {
-  try {
-    await post('save-account-settings', {
-      accountId: formData.get('accountId'),
-      allowedDomains: formData.get('allowed-domains')
-    })
+export interface SettingsState {
+  success: boolean
+  errorMessage: string
+  successMessage: string
+  values: {
+    allowedDomains: string
+    webinarsEnabled: boolean
+  } | null
+}
 
-    console.log('Save account settings success');
+export async function saveAccountSettings(
+  _state: SettingsState,
+  formData: FormData
+): Promise<SettingsState> {
+  const accountId = formData.get('accountId') as string;
+  const allowedDomains = formData.get('allowed-domains') as string;
+  const webinarsEnabled = formData.get('webinars-enabled') === 'on';
+
+  const values = { allowedDomains, webinarsEnabled };
+
+  try {
+    const response = await post('save-account-settings', {
+      accountId,
+      allowedDomains,
+      configuration: {
+        webinarsEnabled
+      }
+    });
+
+    if (response?.statusCode && response.statusCode >= 400) {
+      return {
+        success: false,
+        errorMessage: `Erreur API: ${response.statusCode}`,
+        successMessage: '',
+        values
+      }
+    }
 
     return {
       success: true,
       errorMessage: '',
-      successMessage: 'Paramètres enregistrés avec succès'
+      successMessage: 'Paramètres enregistrés avec succès',
+      values
     }
   } catch (error) {
-    console.error('Save account settings error:', error)
     return {
       success: false,
       errorMessage: 'Une erreur est survenue lors de la sauvegarde des paramètres',
-      successMessage: ''
+      successMessage: '',
+      values
     }
   }
 }
