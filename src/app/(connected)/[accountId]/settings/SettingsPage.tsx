@@ -16,6 +16,7 @@ export default function({ account }: { account: any }) {
 
   const allowedDomains = state.values?.allowedDomains ?? account.allowedDomains.join(',')
   const webinarsEnabled = state.values?.webinarsEnabled ?? account.configuration?.webinarsEnabled ?? false
+  const onboardingVideoUrl = state.values?.onboardingVideoUrl ?? account.configuration?.onboardingVideoUrl ?? ''
 
   return (
     <div>
@@ -34,6 +35,22 @@ export default function({ account }: { account: any }) {
                 defaultValue={allowedDomains}
                 disabled={pending}
               />
+            </div>
+
+            <div className='flex flex-col gap-2'>
+              <label htmlFor='onboarding-video-url'>Vidéo d'onboarding</label>
+              <input
+                key={`onboarding-video-url-${onboardingVideoUrl}`}
+                type='url'
+                id='onboarding-video-url'
+                name='onboarding-video-url'
+                placeholder='https://www.youtube.com/watch?v=... ou lien direct'
+                defaultValue={onboardingVideoUrl}
+                disabled={pending}
+              />
+              <p className='text-sm text-gray-500'>
+                Lien vers une vidéo affichée lors de la première connexion (URL directe, YouTube ou Vimeo).
+              </p>
             </div>
 
             <div className='flex flex-col gap-2'>

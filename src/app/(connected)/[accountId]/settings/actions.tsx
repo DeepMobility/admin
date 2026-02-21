@@ -9,6 +9,7 @@ export interface SettingsState {
   values: {
     allowedDomains: string
     webinarsEnabled: boolean
+    onboardingVideoUrl: string
   } | null
 }
 
@@ -19,15 +20,17 @@ export async function saveAccountSettings(
   const accountId = formData.get('accountId') as string;
   const allowedDomains = formData.get('allowed-domains') as string;
   const webinarsEnabled = formData.get('webinars-enabled') === 'on';
+  const onboardingVideoUrl = (formData.get('onboarding-video-url') as string) || '';
 
-  const values = { allowedDomains, webinarsEnabled };
+  const values = { allowedDomains, webinarsEnabled, onboardingVideoUrl };
 
   try {
     const response = await post('save-account-settings', {
       accountId,
       allowedDomains,
       configuration: {
-        webinarsEnabled
+        webinarsEnabled,
+        onboardingVideoUrl
       }
     });
 
