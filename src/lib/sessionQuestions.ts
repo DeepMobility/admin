@@ -1,8 +1,8 @@
 const sessionQuestions = [
   {
     value: 'energy',
-    beforeLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie avant cette séance ?",
-    afterLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie après cette séance ?",
+    beforeLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie ressentie avant cette séance ?",
+    afterLabel: "Sur une échelle de 1 à 5, quel est votre niveau d'énergie ressentie après cette séance ?",
   },
   {
     value: 'stress',
